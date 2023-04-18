@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet/less" type="text/css" href="style.less"/>
+    <script src="https://cdn.jsdelivr.net/npm/less"></script>
+
+</head>
+<body>
+    <form class="wrapper">
+        <label for="jmeno">Jméno: </label>
+        <input type="text" name="jmeno" id="jmeno">
+
+        <label for="prijmeni">Příjmení: </label>
+        <input type="text" name="prijmeni" id="prijmeni">
+
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username">
+
+        <label for="password">Heslo: </label>
+        <input type="password" name="password" id="password" onkeyup="Hide()">
+
+        <div class="password-check-wrapper">
+            <label for="password-check">Heslo potvrdit: </label>
+            <input type="password" name="password-check" id="password-check">
+        </div>
+        
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email">
+
+        <label for="question" id="question-label">Otázka:</label>
+        <input type="text" name="question" id="question-answer">
+
+        <label for="note">Poznámka k vašemu účtu</label>
+        <input type="text" name="note" id="note">
+
+        <button type="submit" id="submit">Odeslat</button>
+    </form>
+
+</body>
+<script src="hide.js"></script>
+</html>
