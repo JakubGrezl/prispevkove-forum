@@ -1,0 +1,64 @@
+.post-card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .post-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
+    padding-right: 20px;
+
+  }
+  
+  .post-author, .post-date {
+    font-size: 14px;
+    color: #7f7f7f;
+    margin-bottom: 5px;
+    padding-right: 20px;
+  }
+  
+  .post-date {
+    font-style: italic;
+
+  }
+  
+  .post-author:before {
+    content: "by ";
+  }
+  
+  .post-date:before {
+    content: " on ";
+  }
+  
+  .post-author, .post-date:before {
+    font-weight: 700;
+    color: #333333;
+  }
+  
+  .post-content {
+    flex-grow: 1;
+    text-align: right;
+
+  }
+  
+  .post-content p {
+    font-size: 16px;
+    color: #7f7f7f;
+    margin: 0;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .post-content::after {
+    content: "...";
+  }
+  
