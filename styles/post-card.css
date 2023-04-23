@@ -9,6 +9,12 @@
   text-decoration: none;
   
   }
+
+  .post-comments-number::before {
+    content: "number of comments: ";
+    font-weight: 700;
+    color: #333333;
+  }
   
   .post-submit {
     display: none;
@@ -29,6 +35,7 @@
     margin-bottom: 5px;
     padding-right: 20px;
   }
+
   
   .post-date {
     font-style: italic;
