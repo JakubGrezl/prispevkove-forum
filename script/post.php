@@ -6,7 +6,6 @@
         public $author;
         public $comments = array();
         public $content;
-        public $showComments = false;
 
         function __construct($id, $title, $date, $author, $content) {
             $this->id = $id;
@@ -32,4 +31,9 @@
             $this->text = $text;
         }        
     }
+
+    $posts = mysqli_query($conn, "SELECT * FROM post") or die (mysqli_error($conn));
+    $comments = mysqli_query($conn, "SELECT * FROM comment") or die (mysqli_error($conn));
+
+    
 ?>
