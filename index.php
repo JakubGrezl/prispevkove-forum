@@ -75,8 +75,8 @@
                 <input type="text" name="surname" class="login-input" required>    
             
                 <label for="username" class="login-label">Username:</label>
-                <input type="text" name="username" class="login-input" required>
-                <span class="login-label login-error" id="username-error">Username is taken</span>
+                <input type="text" name="username" class="login-input" id="login-username-input" required oninput="checkUsername();">
+                <span id="login-username-error">Username taken</span>
 
                 <label for="password" class="login-label">Password:</label>
                 <input type="password" name="password" class="login-input" required>
@@ -101,7 +101,25 @@
     </div>
 
 
-    <script>
+    <script id="main-script">
+        function checkUsername(){
+            $.ajax({
+                url: './script/checkUsername.php',
+                type: 'POST',
+                data: {
+                    username: $('#login-username-input').val()
+                },
+                success: function(data){
+                    if(data == 'taken'){
+                        $('#login-username-error').css('display', 'block');
+                    }else{
+                        $('#login-username-error').css('display', 'none');
+                    }
+                }
+            });
+        }
+
+
         function clickable(idnum) {
             document.getElementById('submit-btn-' + idnum).click();
         }
@@ -109,4 +127,4 @@
     <script src="./script/popup.js"></script>
 </body>
 
-</html>
+</html> 
