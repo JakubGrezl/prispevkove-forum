@@ -88,7 +88,9 @@
                 </div>
                 
                 <label for="email" class="login-label">Email:</label>
-                <input type="text" name="email" class="login-input" required>
+                <input type="text" name="email" class="login-input" id="email-input" required onblur="checkEmail()">
+                <span id="login-email-error" style="display: none">Wrong email</span>
+                
 
                 <label for="question" class="login-label">Kontrolní otázka:</label>
                 <input type="text" name="question" class="login-input" required>
@@ -127,6 +129,17 @@
             });
         }
 
+
+        function checkEmail() {
+            if (validateEmail($('#email-input').val())){
+                $('#login-email-error').css('display', 'none');
+                validation = true;
+            } else {
+                $('#login-email-error').css('display', 'block');
+                validation = false;
+            }
+        }
+
         function isPasswordEmpty(){
             if ($("#password").val() == "") {
                 $("#password-check-wrapper").css("display", "none");
@@ -147,6 +160,9 @@
         }
 
         function isValid() {
+            checkUsername();
+            checkEmail();
+            checkPassword();
             return validation;
         }
 
@@ -158,5 +174,4 @@
     </script>
     <script src="./script/popup.js"></script>
 </body>
-
 </html> 
