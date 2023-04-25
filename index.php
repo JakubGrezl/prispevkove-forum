@@ -54,7 +54,7 @@
                 <input type="text" id="email" class="login-input" required>
 
                 <label for="password" class="login-label">Password:</label>
-                <input type="password" id="password" class="login-input" required>
+                <input type="password" id="login-password" class="login-input" required>
 
                 <button type="submit" class="login-submit">Submit</button>
             </form>
@@ -78,13 +78,17 @@
                 <span id="login-username-error" style="display: none">Username taken</span>
 
                 <label for="password" class="login-label">Password:</label>
-                <input type="password" name="password" class="login-input" id="password" required>
+                <input type="password" name="password" class="login-input" id="password" required oninput="isPasswordEmpty();">
                 
                 
-                <label for="password_check" class="login-label">Password check:</label>
-                <input type="password" name="password_check" class="login-input" id="password-check" required onblur="checkPassword();">
-                <span id="login-password-error" style="display: none">Not same password</span>
+                <div id="password-check-wrapper" style="display: none">
+                    <label for="password_check" class="login-label">Password check:</label>
+                    <input type="password" name="password_check" class="login-input" id="password-check" required onblur="checkPassword();">
+                    <span id="login-password-error" style="display: none">Not same password</span>
+                </div>
                 
+                <label for="email" class="login-label">Email:</label>
+                <input type="text" name="email" class="login-input" required>
 
                 <label for="question" class="login-label">Kontrolní otázka:</label>
                 <input type="text" name="question" class="login-input" required>
@@ -123,8 +127,16 @@
             });
         }
 
+        function isPasswordEmpty(){
+            if ($("#password").val() == "") {
+                $("#password-check-wrapper").css("display", "none");
+            } else {
+                $("#password-check-wrapper").css("display", "block");
+            }
+        }
+
         function checkPassword() {
-            if ($("#password").val() == $("#password-check").val())
+            if ($("#password").val() != $("#password-check").val())
             {
                 $('#login-password-error').css('display', 'block');
                 validation = false;
