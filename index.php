@@ -17,7 +17,6 @@
     ?>
     <header class="header">
         <div class="logo">
-            <img src="./images/logo.png" alt="logo" class="logo-img">
             <h1 class="logo-text">Příspěvkové fórum</h1>
         </div>
         <nav class="nav-menu">
@@ -67,7 +66,7 @@
     <div id="register-popup">
         <div class="login-content">
             <h2 class="login-title">Register</h2>
-            <form class="login-form" action='./script/register.php' method="post">
+            <form onsubmit="return isValid();" class="login-form" action='./script/register.php' method="post">
                 <label for="name" class="login-label">Name:</label>
                 <input type="text" name="name" class="login-input" required>
 
@@ -76,14 +75,16 @@
             
                 <label for="username" class="login-label">Username:</label>
                 <input type="text" name="username" class="login-input" id="login-username-input" required oninput="checkUsername();">
-                <span id="login-username-error">Username taken</span>
+                <span id="login-username-error" style="display: none">Username taken</span>
 
                 <label for="password" class="login-label">Password:</label>
-                <input type="password" name="password" class="login-input" required>
+                <input type="password" name="password" class="login-input" id="password" required>
                 
-
+                
                 <label for="password_check" class="login-label">Password check:</label>
-                <input type="password" name="password_check" class="login-input" required>
+                <input type="password" name="password_check" class="login-input" id="password-check" required onblur="checkPassword();">
+                <span id="login-password-error" style="display: none">Not same password</span>
+                
 
                 <label for="question" class="login-label">Kontrolní otázka:</label>
                 <input type="text" name="question" class="login-input" required>
@@ -102,6 +103,7 @@
 
 
     <script id="main-script">
+        let validation;
         function checkUsername(){
             $.ajax({
                 url: './script/checkUsername.php',
@@ -112,12 +114,30 @@
                 success: function(data){
                     if(data == 'taken'){
                         $('#login-username-error').css('display', 'block');
+                        validation = false;
                     }else{
                         $('#login-username-error').css('display', 'none');
+                        validation = true;
                     }
                 }
             });
         }
+
+        function checkPassword() {
+            if ($("#password").val() == $("#password-check").val())
+            {
+                $('#login-password-error').css('display', 'block');
+                validation = false;
+            } else {
+                $('#login-password-error').css('display', 'none');
+                validation = true;
+            }
+        }
+
+        function isValid() {
+            return validation;
+        }
+
 
 
         function clickable(idnum) {
