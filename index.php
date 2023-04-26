@@ -49,12 +49,12 @@
     <div id="login-popup" >
         <div class="login-content">
             <h2 class="login-title">Login</h2>
-            <form class="login-form" action='./pages/login.php' method="post">
-                <label for="email" class="login-label">Email:</label>
-                <input type="text" id="email" class="login-input" required>
+            <form class="login-form" action='./script/login.php' onsubmit="return isLoginValid()" method="post">
+                <label for="username" class="login-label">Username:</label>
+                <input type="text" id="username" name="login-username" class="login-input" required>
 
                 <label for="password" class="login-label">Password:</label>
-                <input type="password" id="login-password" class="login-input" required>
+                <input type="password" id="login-password" name="login-password" class="login-input" required>
 
                 <button type="submit" class="login-submit">Submit</button>
             </form>
@@ -141,11 +141,11 @@
         }
 
         function isPasswordEmpty(){
-            if ($("#password").val() == "") {
+            if ($("#password").val() == "")
                 $("#password-check-wrapper").css("display", "none");
-            } else {
+            else 
                 $("#password-check-wrapper").css("display", "block");
-            }
+            
         }
 
         function checkPassword() {
