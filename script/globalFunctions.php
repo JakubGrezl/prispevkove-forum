@@ -1,6 +1,6 @@
 <?php
     function ReturnAuthor($post){
-        return ($post["author"] == null) ? "Neregistrovaný uživatel" : $post["author"];
+        return ($post["ID_user"] == null) ? "Neregistrovaný uživatel" : $post["username"];
     }
 ?>
 

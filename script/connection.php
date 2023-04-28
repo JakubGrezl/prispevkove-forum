@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "prispevkove-forum", 3306);
+    $conn = new mysqli("localhost", "root", "", "prispevkove-forum", 3307);
 
     $conn->set_charset("utf8");
     if ($conn->connect_error) {
