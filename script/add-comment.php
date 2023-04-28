@@ -1,8 +1,8 @@
 <?php
     include "connection.php";
 
-    $content = $_POST['body'];
-    $id_post = $_POST['id_post'];
+    $content = htmlspecialchars($_POST['body']);
+    $id_post = htmlspecialchars($_POST['id_post']);
     
     if($_POST['id_user'] == null) {
         mysqli_query($conn, "INSERT INTO comment (content, date, ID_post) VALUES ('" . $content . "', NOW()),".$_POST['id_post'].";") or die(mysqli_error($conn));  

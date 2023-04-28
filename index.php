@@ -35,16 +35,16 @@
         <?php
         $posts = mysqli_query($conn, "SELECT p.ID_post, p.title, p.date, u.username, u.ID_user , p.content, COUNT(c.ID_comment) AS num_comments FROM post AS p LEFT JOIN comment AS c ON p.ID_post = c.ID_post LEFT JOIN user AS u ON u.ID_user = p.ID_user GROUP BY p.ID_post, p.title;") or die(mysqli_error($conn));
         while ($post = mysqli_fetch_array($posts)) {
-            if ((isset($_SESSION["id_user"]) && $_SESSION["id_user"] == $post["ID_user"]) || $_SESSION["id_user"] == 2) {
+            if (isset($_SESSION["id_user"]) && ($_SESSION["id_user"] == $post["ID_user"] ||  $_SESSION["id_user"] == 2)) {
                 echo "<button class='post-delete' onclick='DeletePost(".$post["ID_post"].")'>Delete post</button>";
             }
             echo "<form class='post-card' action='./pages/post.php' method='get'>";
             echo "<div class='post-card-content' onclick='clickable(" . $post["ID_post"] . ")'>";
-            echo "<h1 class='post-title'>" . $post["title"] . "</h1>";
+            echo "<h1 class='post-title'>" .  $post["title"] . "</h1>";
             echo "<p class='post-date'>" . $post["date"] . "</p>";
             echo "<p class='post-author'>" . ReturnAuthor($post) . "</p>";
             echo "<p class='post-comments-number'>" . $post["num_comments"] . "</p>";
-            echo "<p class='post-content'>" . substr($post["content"], 0, 50) . "</p>";
+            echo "<p class='post-content'>" .  substr($post["content"], 0, 50) . "</p>";
             echo "<input type='hidden' name='post-id' value='" . $post["ID_post"] . "'>";
             echo "<input class='post-submit' type='submit' id='submit-btn-" . $post["ID_post"] . "'>";
             echo "</div>";

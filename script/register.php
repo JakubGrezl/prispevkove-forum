@@ -1,14 +1,14 @@
 <?php 
     include "connection.php";
 
-    $name = $_POST['name'];
-    $surname = $_POST['surname'];
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-    $email = $_POST['email'];
-    $question = $_POST['question'];
-    $answer = $_POST['answer'];
-    $note = $_POST['note'];
+    $name =  htmlspecialchars($_POST['name']);
+    $surname =  htmlspecialchars($_POST['surname']);
+    $username =  htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars(md5($_POST['password']));
+    $email = htmlspecialchars($_POST['email']);
+    $question = htmlspecialchars($_POST['question']);
+    $answer = htmlspecialchars($_POST['answer']);
+    $note = htmlspecialchars($_POST['note']);
 
     $sql = "INSERT INTO user (name, surname, username, password, email, question, answer, note) VALUES ('".$name."', '".$surname."', '".$username."', '".$password."', '".$email."', '".$question."', '".$answer."', '".$note."')";
     mysqli_query($conn, $sql) or die(mysqli_error($conn));

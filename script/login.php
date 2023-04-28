@@ -2,8 +2,8 @@
 session_start();
 include 'connection.php';
 
-$username = $_POST['login-username'];
-$password = md5($_POST['login-password']);
+$username =  htmlspecialchars($_POST['login-username']);
+$password =  htmlspecialchars(md5($_POST['login-password']));
 
 $sql = "SELECT * FROM user AS u WHERE u.username = '" . $username . "' AND u.password = '" . $password . "';";
 
